@@ -63,6 +63,7 @@ function parseUplink(device, payload) {
         var e55 = device.endpoints.byAddress("55");
         var e56 = device.endpoints.byAddress("56");
         var e57 = device.endpoints.byAddress("57");
+        var e59 = device.endpoints.byAddress("59");
         env.log(variables[0]);
 
         //Variables consumos
@@ -287,6 +288,10 @@ function parseUplink(device, payload) {
         if (variables[0] != null && e57 != null){
             e57.updateGenericSensorStatus(variables[0].m57);
         }
+
+        if (variables[0] != null && e59 != null){
+            e59.updateGenericSensorStatus(variables[0].m59);
+        }
     }
 
     if (parsed[0] && parsed[0].payload4 && parsed[0].payload4.variables) {
@@ -301,7 +306,21 @@ function parseUplink(device, payload) {
 
     }
 
+    if (parsed[0] && parsed[0].payload2 && parsed[0].payload2.variables) {
+        var variables3 = parsed[0].payload2.variables;
+
+        var e60 = device.endpoints.byAddress("60"); //Viene de Cementerio
+        var e61 = device.endpoints.byAddress("61"); 
+        env.log(variables3[0]);
     
+        if (variables3[0] != null && e60 != null) {
+            e60.updateGenericSensorStatus(variables3[0].clorocemen);
+            }
+        if (variables3[0] != null && e61 != null) {
+            e61.updateGenericSensorStatus(variables3[0].dato);
+            }
+
+    } 
 
 }
 
